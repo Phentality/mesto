@@ -11,4 +11,10 @@
     align-self: end;
 }
 
-
+@media (min-width: 320px) and (max-width:890px) {
+    .profile__info-profession {
+        max-width: 282px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

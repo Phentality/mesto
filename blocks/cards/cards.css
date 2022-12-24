@@ -10,5 +10,15 @@
     font-family: 'Inter', Arial, sans-serif;
 }
 
+@media (min-width: 320px) and (max-width:890px) {
+    .cards {
+        max-width: 282px;
+        margin: 36px auto 0px;
+        grid-template-columns: repeat(1, minmax(100px, 1fr));
+        grid-template-rows: repeat(6, minmax(100px, 1fr));
+        gap: 20px;
+    }
+}
+
 
 

@@ -6,23 +6,11 @@
     padding: 0;
 }
 
-/*@media screen and (max-width:1024px) {
+@media (min-width: 320px) and (max-width:890px) {
     .header {
-        max-width: 928px;
+        max-width: 320px;
+        margin: 28px auto 0px;
     }
 }
-
-@media (min-width:768px) and (max-width:1023px) {
-    .header {
-        max-width: 720px;
-    }
-}
-
-@media (min-width: 320px) and (max-width:767px) {
-    .header {
-        max-width: 288px;
-        margin: 16px auto 48px;
-    }
-}*/
 
 

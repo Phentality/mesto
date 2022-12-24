@@ -7,3 +7,10 @@
     line-height: 22px;
     color: #545454;
 }
+
+@media (min-width: 320px) and (max-width:890px) {
+    .footer__text {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
