@@ -5,16 +5,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Проект 4го спринта" />
-  <meta name="keywords" content="html, css" />
+  <meta name="keywords" content="html, css, java" />
   <link rel="stylesheet" href="./pages/index.css" />
   <title>Место</title>
 </head>
 
-<body>
+<body class="page">
   <header class="header">
     <img class="header__logo" src="./images/logo.png" alt="Лого">
     <img class="header__line" src="./images/Line.png" alt="Линия">
   </header>
+  <section class="profile">
+    <div class="profile__card">
+      <img class="profile__avatar" src="./images/Kusto.jpg" alt="Аватар">
+      <div class="profile__info">
+        <p class="profile__info-name">Жак-Ив Кусто</p>
+        <p class="profile__info-profession">Исследователь океана</p>
+        <input class="profile__info-button" type="image" src="./images/Edit Button.svg" name="edit" value="Edit" />
+      </div>
+    </div>
+    <input class="profile__info-addbutton" type="image" src="./images/Add Button.png" name="add" value="Add" />
+  </section>
+  <section class="cards">
+    <div class="cards__card">
+      <img class="cards__image" src="./images/Kara.jpg" alt="Карачаевск">
+      <div class="cards__container">
+        <h2 class="cards__text">Карачаевск</h2>
+        <img class="cards__like" src="./images/Like.png" alt="Лайк">
+      </div>
+    </div>
+    <div class="cards__card">
+      <img class="cards__image" src="./images/Elbrus.png" alt="Эльбрус">
+      <div class="cards__container">
+        <h2 class="cards__text">Эльбрус</h2>
+        <img class="cards__like" src="./images/Like.png" alt="Лайк">
+      </div>
+    </div>
+    <div class="cards__card">
+      <img class="cards__image" src="./images/Ufa.webp" alt="Уфа">
+      <div class="cards__container">
+        <h2 class="cards__text">Уфа</h2>
+        <img class="cards__like" src="./images/Like.png" alt="Лайк">
+      </div>
+    </div>
+    <div class="cards__card">
+      <img class="cards__image" src="./images/Казань.jpg" alt="Казань">
+      <div class="cards__container">
+        <h2 class="cards__text">Казань</h2>
+        <img class="cards__like" src="./images/Like.png" alt="Лайк">
+      </div>
+    </div>
+    <div class="cards__card">
+      <img class="cards__image" src="./images/Dombai.png" alt="Домбай">
+      <div class="cards__container">
+        <h2 class="cards__text">Домбай</h2>
+        <img class="cards__like" src="./images/Like.png" alt="Лайк">
+      </div>
+    </div>
+    <div class="cards__card">
+      <img class="cards__image" src="./images/Питер.jpg" alt="Питер">
+      <div class="cards__container">
+        <h2 class="cards__text">Санкт-петербург</h2>
+        <img class="cards__like" src="./images/Like.png" alt="Лайк">
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <h3 class="footer__text">© 2020 Mesto Russia</h3>
+  </footer>
 </body>
 
 </html>

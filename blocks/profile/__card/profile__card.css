@@ -1,0 +1,9 @@
+.profile__card {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+

@@ -1,0 +1,7 @@
+.profile__info-button {
+    grid-area: button;
+    align-self: center;
+    width: 24px;
+}
+
+

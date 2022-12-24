@@ -1,0 +1,14 @@
+.profile__info-profession {
+    max-width: 336px;
+    padding: 0;
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: white;
+    grid-area: profession;
+    align-self: end;
+}
+
+
