@@ -1,0 +1,10 @@
+.cards__like_active {
+    
+}
+
+.cards__like:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+

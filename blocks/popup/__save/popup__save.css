@@ -1,0 +1,15 @@
+.popup__save {
+    max-width: 358px;
+    margin: 0px auto 37px;
+}
+
+.popup__save:hover {
+    opacity: 0.5;
+}
+
+@media (min-width: 320px) and (max-width:890px) {
+    .popup__save {
+        max-width: 238px;
+        margin: 0px auto 25px;
+    }
+}
