@@ -1,6 +1,6 @@
 .cards {
     max-width: 880px;
-    margin: 46px auto 0px;
+    margin: 50px auto 0px;
     display: grid;
     grid-template-columns: repeat(3, minmax(100px, 1fr));
     grid-template-rows: repeat(2, minmax(100px, 1fr));

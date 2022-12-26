@@ -2,16 +2,27 @@
     grid-area: button;
     align-self: center;
     width: 24px;
+    height: 24px;
+    background-image: url(../../../images/Edit-Button.svg);
+    background-color: transparent;
+    background-position: 0px 0px;
+    border: none;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .profile__info-button:hover {
-    opacity: 0.5;
+    opacity: 0.6;
     cursor: pointer;
 }
 
 @media (min-width: 320px) and (max-width:890px) {
     .profile__info-button {
+        position: absolute;
+        right: -28px;
+        top: 8px;
         width: 18px;
+        height: 18px;
     }
 }
 

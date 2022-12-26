@@ -7,15 +7,18 @@
     grid-template-areas:
     "name button"
     "profession profession";
-    gap: 18px 16px;
+    gap: 8px 18px;
     padding: 0;
 }
 
 @media (min-width: 320px) and (max-width:890px) {
     .profile__info {
         max-width: 282px;
-        grid-template-columns: 189px 18px;
-        gap: 10px 14px;
+        display: block;
+        position: relative;
+        /*grid-template-columns: 210px 18px;
+        grid-template-rows: 1fr;
+        gap: 7px 10px;*/
         margin: 0px auto 0px;
     }
 }

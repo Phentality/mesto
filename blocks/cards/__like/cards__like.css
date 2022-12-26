@@ -1,6 +1,12 @@
 .cards__like {
-    max-width: 22px;
-    padding-right: 30px;
+    width: 22px;
+    height: 19px;
+    padding-right: 36px;
+    background-image: url(../../../images/Like.svg);
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
 }
 
 .cards__like:hover {

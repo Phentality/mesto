@@ -1,25 +1,25 @@
-.popup__profession {
+.popup__input {
     font-family: inherit;
     display: block;
     padding: 0;
     border: 0;
     max-width: 358px;
-    height: 27px;
+    height: 36px;
     box-sizing: border-box;
-    border-bottom: 1px solid #bcbcc4;
+    border-bottom: 1px solid rgba(188,188,196, .7);
     background-color: transparent;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    margin: 0px 36px 48px;
+    margin: 0px 36px 20px;
 }
 
-.popup__profession:focus {outline-color:lightblue;}
+.popup__input:focus {outline-color:lightblue;}
 
 @media (min-width: 320px) and (max-width:890px) {
-    .popup__profession {
+    .popup__input {
         max-width: 238px;
-        margin: 0px 22px 45px;
+        margin: 0px 22px 20px;
     }
 }

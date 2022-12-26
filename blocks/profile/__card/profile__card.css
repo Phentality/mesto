@@ -6,4 +6,9 @@
     gap: 30px;
 }
 
+@media (min-width: 320px) and (max-width:890px) {
+    .profile__card {
+        gap: 25px;
+    }
+}
 
