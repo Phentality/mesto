@@ -1,5 +1,6 @@
 .profile__info-button {
     grid-area: button;
+    padding: 0;
     align-self: center;
     width: 24px;
     height: 24px;
@@ -18,9 +19,6 @@
 
 @media (min-width: 320px) and (max-width:890px) {
     .profile__info-button {
-        position: absolute;
-        right: -28px;
-        top: 8px;
         width: 18px;
         height: 18px;
     }

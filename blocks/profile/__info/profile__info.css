@@ -14,11 +14,9 @@
 @media (min-width: 320px) and (max-width:890px) {
     .profile__info {
         max-width: 282px;
-        display: block;
-        position: relative;
-        /*grid-template-columns: 210px 18px;
+        grid-template-columns: 210px 15px;
         grid-template-rows: 1fr;
-        gap: 7px 10px;*/
+        gap: 7px 10px;
         margin: 0px auto 0px;
     }
 }

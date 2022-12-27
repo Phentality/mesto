@@ -22,12 +22,6 @@ function closePopup () {
 popupOpen.addEventListener('click', openPopup);
 popupClose.addEventListener('click', closePopup);
 
-function savePopup () {
-    profileInfoName.textContent = nameInput.value;
-    profileInfoProfession.textContent = jobInput.value;
-    closePopup();
-}
-
 function handleFormSubmit (evt) {
     evt.preventDefault();
     profileInfoName.textContent = nameInput.value;
@@ -36,3 +30,4 @@ function handleFormSubmit (evt) {
 }
 
 formElement.addEventListener('submit', handleFormSubmit);
+
