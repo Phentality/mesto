@@ -106,6 +106,8 @@ function handleAddFormSubmit (evt) {
     cardImage.src = linkInput.value;
 
     cards.prepend(cardElement);
+    placeInput.value = '';
+    linkInput.value = '';
 
     const deleteButton = cardElement.querySelector('.cards__delete');
     deleteButton.addEventListener('click', () => {
@@ -120,18 +122,15 @@ secondFormElement.addEventListener('submit', handleAddFormSubmit);
 //Попап для картинки
 const popupImage = document.querySelector('#popupImage');
 const popupImageClose = popupImage.querySelector('.popup__close');
-const popupImageOpen = document.querySelector('.cards__image');
+const popupImageOpen = document.querySelectorAll('.cards__image');
 const popupImageView = popupImage.querySelector('.popup__image')
 
-/*popupImageOpen( (el) => {
+popupImageOpen.forEach( (el) => {
     el.addEventListener('click', () => {
         popupImage.classList.add('popup_opened');
     });
-});*/
-
-function openPopupImage () {
-    popupImage.classList.add('popup_opened');
-};
+    popupImageView.src = el.src;
+});
 
 function closePopupImage () {
     popupImage.classList.remove('popup_opened');
