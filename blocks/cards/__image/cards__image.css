@@ -8,5 +8,7 @@
     border-radius: 10px 10px 0px 0;
 }
 
-
+.cards__image:hover {
+    cursor: pointer;
+}
 
