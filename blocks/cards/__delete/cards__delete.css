@@ -15,5 +15,8 @@
     cursor: pointer;
 }
 
+.cards__delete:hover {
+    opacity: 0.6;
+}
 
 
