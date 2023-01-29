@@ -2,7 +2,7 @@
 const initialCards = [
     {
         name: 'Уфа',
-        link: 'https://crtrb.ru/uploads/posts/2022-08/2311.jpg'
+        link: 'https://images.unsplash.com/photo-1651509794867-2ddb4729f1c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80'
     },
     {
         name: 'Челябинская область',
@@ -35,12 +35,19 @@ initialCards.forEach((element) => {
 
     cardElement.querySelector('.cards__text').textContent = element.name;
     cardElement.querySelector('.cards__image').src = element.link;
-    cards.append(cardElement);
 
-    const deleteButton = cardElement.querySelector('.cards__delete');
+    const deleteButton = cardElement.querySelector('.cards__delete');//Удаление карточек
     deleteButton.addEventListener('click', () => {
         cardElement.remove();
-    })
+    });
+
+    const likeButton = cardElement.querySelector('.cards__like');//Лайк карточек
+    likeButton.addEventListener('click', () => {
+        likeButton.classList.toggle('cards__like');
+        likeButton.classList.toggle('cards__like_active');
+    });
+
+    cards.append(cardElement);
 })
 
 //Попап для изменения профиля
@@ -109,32 +116,64 @@ function handleAddFormSubmit (evt) {
     placeInput.value = '';
     linkInput.value = '';
 
-    const deleteButton = cardElement.querySelector('.cards__delete');
+    const deleteButton = cardElement.querySelector('.cards__delete');//Удаление карточек
     deleteButton.addEventListener('click', () => {
         cardElement.remove();
-    })
+    });
+    
+    const likeButton = cardElement.querySelector('.cards__like');//Лайк карточек
+    likeButton.addEventListener('click', () => {
+        likeButton.classList.toggle('cards__like');
+        likeButton.classList.toggle('cards__like_active');
+    });
+
+    const popupImage = document.querySelector('#popupImage');//Попап на картинку для новых карточек
+    const popupImageClose = popupImage.querySelector('.popup__close');
+    const popupImageOpen = document.querySelectorAll('.cards__card');
+    const popupImageView = popupImage.querySelector('.popup__image');
+    const popupName = popupImage.querySelector('.popup__name');
+
+    popupImageOpen.forEach( (el) => {
+        const Image = el.querySelector('.cards__image');
+        Image.addEventListener('click', () => {
+            popupImage.classList.add('popup_opened');
+            popupImageView.src = Image.src;
+            popupName.textContent = el.querySelector('.cards__text').textContent;
+        });
+    });
+
+
+    function closePopupImage () {
+        popupImage.classList.remove('popup_opened');
+    };
+
+    popupImageClose.addEventListener('click', closePopupImage);
 
     closePopupAdd();
 };
 
 secondFormElement.addEventListener('submit', handleAddFormSubmit);
 
-//Попап для картинки
+//Попап для картинки для добавленных автоматом через массив карточек
 const popupImage = document.querySelector('#popupImage');
 const popupImageClose = popupImage.querySelector('.popup__close');
-const popupImageOpen = document.querySelectorAll('.cards__image');
-const popupImageView = popupImage.querySelector('.popup__image')
+const popupImageOpen = document.querySelectorAll('.cards__card');
+const popupImageView = popupImage.querySelector('.popup__image');
+const popupName = popupImage.querySelector('.popup__name');
 
 popupImageOpen.forEach( (el) => {
-    el.addEventListener('click', () => {
+    const Image = el.querySelector('.cards__image');
+    Image.addEventListener('click', () => {
         popupImage.classList.add('popup_opened');
+        popupImageView.src = Image.src;
+        popupName.textContent = el.querySelector('.cards__text').textContent;
     });
-    popupImageView.src = el.src;
 });
+
 
 function closePopupImage () {
     popupImage.classList.remove('popup_opened');
 };
 
-popupImageOpen.addEventListener('click', openPopupImage);
 popupImageClose.addEventListener('click', closePopupImage);
+
