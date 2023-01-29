@@ -1,8 +1,13 @@
 //Массив с карточками
 const initialCards = [
     {
+<<<<<<< HEAD
         name: 'Уфа',
         link: 'https://crtrb.ru/uploads/posts/2022-08/2311.jpg'
+=======
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+>>>>>>> 8eee1c6cb4315272d5f3b4b8ae6d7278c2b53f6c
     },
     {
         name: 'Челябинская область',
