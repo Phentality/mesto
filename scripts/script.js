@@ -4,6 +4,7 @@ const template = document.querySelector('#card').content;
 const cards = document.querySelector('.cards');
 //Переменные общие для попапов
 const closeButtons = document.querySelectorAll('.popup__close');
+const popups = document.querySelectorAll('.popup')
 //Переменные для попапа профиля
 const popupProfile = document.querySelector('#popupProfile');
 const popupProfileClose = popupProfile.querySelector('.popup__close');
@@ -104,10 +105,32 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 };
 
+function closeEscapePopup(popup) {
+    popup.addEventListener('keydown', (evt) => {
+        if (evt.key === "Escape") {
+            closePopup(popup);
+        }
+    });
+}
+
+function closeOverlayPopup(popup) {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target === popup) {
+            closePopup(popup);
+        }
+    })
+}
+
+popups.forEach((popup) => {
+    closeEscapePopup(popup);
+    closeOverlayPopup(popup);
+});
+
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
+
 
 //Попап для изменения профиля
 function openPopupProfile () {
@@ -117,10 +140,6 @@ function openPopupProfile () {
 };
 
 popupProfileOpen.addEventListener('click', openPopupProfile);
-
-function closePopupProfile () {
-    popupProfile.classList.remove('popup_opened');
-};
 
 function handleProfileFormSubmit (evt) {
     evt.preventDefault();
@@ -145,7 +164,6 @@ function handleAddFormSubmit (evt) {
     renderCard(place, link);
     placeInput.value = '';
     linkInput.value = '';
-
     closePopup(popupAdd);
 };
 

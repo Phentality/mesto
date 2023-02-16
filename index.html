@@ -35,8 +35,24 @@
       <button class="popup__close" type="button" name="close" aria-label="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="profile-form">
-        <input class="popup__input popup__input_type_name" placeholder="Введите имя" name="name" type="text" value="Жак-Ив Кусто">
-        <input class="popup__input popup__input_type_profession" placeholder="Введите профессию" name="profession" type="text" value="Исследователь океана">
+        <input 
+        class="popup__input popup__input_type_name" 
+        placeholder="Введите имя" 
+        name="name" 
+        type="text" 
+        value="Жак-Ив Кусто"
+        required
+        minlength="2"
+        maxlength="40">
+        <input 
+        class="popup__input popup__input_type_profession" 
+        placeholder="Введите профессию" 
+        name="profession" 
+        type="text" 
+        value="Исследователь океана"
+        required
+        minlength="2"
+        maxlength="200">
         <button class="popup__save" type="submit" aria-label="Сохранить" name="save" value=""></button>
       </form>
     </div>
@@ -46,8 +62,22 @@
       <button class="popup__close" type="button" name="close" aria-label="Закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" id="popupAdds" name="profile-form">
-        <input class="popup__input popup__input_type_place" placeholder="Название" name="place" type="text" value="">
-        <input class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" name="link" type="text" value="">
+        <input 
+        class="popup__input popup__input_type_place"
+        placeholder="Название"
+        name="place"
+        type="text"
+        value=""
+        required
+        minlength="2"
+        maxlength="30">
+        <input 
+        class="popup__input popup__input_type_link"
+        placeholder="Ссылка на картинку"
+        name="link"
+        type="url"
+        value=""
+        required>
         <button class="popup__create" type="submit" aria-label="Создать" name="create" value=""></button>
       </form>
     </div>
