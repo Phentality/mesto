@@ -34,8 +34,9 @@
     <div class="popup__container">
       <button class="popup__close" type="button" name="close" aria-label="Закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="profile-form">
+      <form class="popup__form" name="profile-form" novalidate>
         <input 
+        id="name"
         class="popup__input popup__input_type_name" 
         placeholder="Введите имя" 
         name="name" 
@@ -44,7 +45,9 @@
         required
         minlength="2"
         maxlength="40">
+        <span id ="name-error" class="popup__error"></span>
         <input 
+        id="profession"
         class="popup__input popup__input_type_profession" 
         placeholder="Введите профессию" 
         name="profession" 
@@ -53,7 +56,8 @@
         required
         minlength="2"
         maxlength="200">
-        <button class="popup__save" type="submit" aria-label="Сохранить" name="save" value=""></button>
+        <span id ="profession-error" class="popup__error"></span>
+        <button class="popup__button popup__save" type="submit" aria-label="Сохранить" name="save" value=""></button>
       </form>
     </div>
   </div>
@@ -61,8 +65,9 @@
     <div class="popup__container">
       <button class="popup__close" type="button" name="close" aria-label="Закрыть"></button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form" id="popupAdds" name="profile-form">
-        <input 
+      <form class="popup__form" id="popupAdds" name="profile-form" novalidate>
+        <input
+        id="place" 
         class="popup__input popup__input_type_place"
         placeholder="Название"
         name="place"
@@ -71,14 +76,17 @@
         required
         minlength="2"
         maxlength="30">
-        <input 
+        <span id ="place-error" class="popup__error"></span>
+        <input
+        id = "link"
         class="popup__input popup__input_type_link"
         placeholder="Ссылка на картинку"
         name="link"
         type="url"
         value=""
         required>
-        <button class="popup__create" type="submit" aria-label="Создать" name="create" value=""></button>
+        <span id ="link-error" class="popup__error"></span>
+        <button class="popup__button popup__create" type="submit" aria-label="Создать" name="create" value=""></button>
       </form>
     </div>
   </div>
@@ -103,6 +111,7 @@
     </div>
   </template>
   <script src="./scripts/script.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 
 </html>

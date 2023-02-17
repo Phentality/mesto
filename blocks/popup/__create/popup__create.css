@@ -1,25 +1,9 @@
 .popup__create {
-    margin: 28px auto 37px;
-    width: 358px;
-    height: 50px;
     background-image: url(../../../images/CreateButton.svg);
-    background-color: transparent;
-    background-position: 0px 0px;
-    border: none;
-    background-repeat: no-repeat;
-    background-size: cover;
-    cursor: pointer;
-}
-
-.popup__create:hover {
-    opacity: 0.8;
 }
 
 @media (min-width: 320px) and (max-width:890px) {
     .popup__create {
-        width: 238px;
-        height: 46px;
         background-image: url(../../../images/CreateButtonmobile.svg);
-        margin: 26px auto 25px;
     }
 }
