@@ -27,7 +27,6 @@ const popupImage = document.querySelector('#popupImage');//Попап на ка�
 const popupImageClose = popupImage.querySelector('.popup__close');
 const popupImageView = popupImage.querySelector('.popup__image');
 const popupName = popupImage.querySelector('.popup__name');
-
 //Массив с карточками
 const initialCards = [
     {
@@ -55,7 +54,6 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ]; 
-
 //Функция создания карт
 const createCard = (place, link) => {
     const cardElement = template.querySelector('.cards__card').cloneNode(true);
@@ -97,22 +95,24 @@ initialCards.forEach((element) => {
     cards.append(createCard(place, link));
 });
 //Общее закрытие и открытие попапа
+//Хороший пример для чего нужно удалять обработчик D:
+function closeByEscape(evt) {
+    if (evt.key === "Escape") {
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup);
+    }
+}
+//Открыли попап + обработчик Escape
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEscape);
 };
-
+//Закрыли попап + обработчик Escape
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeByEscape);
 };
-
-function closeEscapePopup(popup) {
-    popup.addEventListener('keydown', (evt) => {
-        if (evt.key === "Escape") {
-            closePopup(popup);
-        }
-    });
-}
-
+//Функция закрытия через оверлей
 function closeOverlayPopup(popup) {
     popup.addEventListener('click', (evt) => {
         if (evt.target === popup) {
@@ -120,43 +120,52 @@ function closeOverlayPopup(popup) {
         }
     })
 }
-
+//Навесили на каждый попап
 popups.forEach((popup) => {
-    closeEscapePopup(popup);
     closeOverlayPopup(popup);
 });
-
+//Общий обработчик для все крестиков попапа
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
 
-
 //Попап для изменения профиля
+//Функция для открытия попапа профиля, с возможностью взятия информации со страницы
 function openPopupProfile () {
     openPopup(popupProfile);
     nameInput.value = profileInfoName.textContent;
     jobInput.value = profileInfoProfession.textContent;
 };
-
+//Навесили обработчик
 popupProfileOpen.addEventListener('click', openPopupProfile);
-
+//Функция для изменения информации на странице
 function handleProfileFormSubmit (evt) {
     evt.preventDefault();
     profileInfoName.textContent = nameInput.value;
     profileInfoProfession.textContent = jobInput.value;
     closePopup(popupProfile);
 };
-
+//Навесили обработчик
 formElement.addEventListener('submit', handleProfileFormSubmit);
 
 //Попап для добавления карточки
+//Функция для деактивации кнопки при каждом новом открытии попапа
+function openPopupAddDisabled() {
+    const button = popupAdd.querySelector('.popup__button');
+    button.classList.add('popup__button_disabled');
+    button.disabled = placeInput.value === '' && linkInput.value === '';
+}
+//Функция открытия попапа добавления карточки
 function openPopupAdd () {
     openPopup(popupAdd);
+    if (placeInput.value === '' && linkInput.value === '') {
+        openPopupAddDisabled();
+    };
 };
-
+//Навесили обработчик
 popupAddOpen.addEventListener('click', openPopupAdd);
-
+//Функция для добавления карточки
 function handleAddFormSubmit (evt) {
     evt.preventDefault();
     const place = placeInput.value;
@@ -166,7 +175,7 @@ function handleAddFormSubmit (evt) {
     linkInput.value = '';
     closePopup(popupAdd);
 };
-
+//Навесили обработчик
 secondFormElement.addEventListener('submit', handleAddFormSubmit);
 
 
