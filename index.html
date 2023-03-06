@@ -100,17 +100,18 @@
   <footer class="footer">
     <h3 class="footer__text">© 2020 Mesto Russia</h3>
   </footer>
-  <template id="card">
+  <template class="cards__template" id="card">
     <div class="cards__card">
       <img class="cards__image" src="#" alt="Картинка">
       <div class="cards__container">
         <h2 class="cards__text"></h2>
-        <button class="cards__like" type="button" aria-label="Лайк" name="like"></button>
+        <button class="cards__like cards__like-btn" type="button" aria-label="Лайк" name="like"></button>
       </div>
       <button class="cards__delete" type="button" aria-label="Удалить" name="delete" value=""></button>
     </div>
   </template>
-  <script src="./scripts/script.js"></script>
+  <script type="module" src="./scripts/script.js"></script>
+  <script type="module" src="./scripts/Card.js"></script>
   <script src="./scripts/validate.js"></script>
 </body>
 

@@ -7,7 +7,6 @@ const closeButtons = document.querySelectorAll('.popup__close');
 const popups = document.querySelectorAll('.popup')
 //Переменные для попапа профиля
 const popupProfile = document.querySelector('#popupProfile');
-const popupProfileClose = popupProfile.querySelector('.popup__close');
 const popupProfileOpen = document.querySelector('.profile__info-button');
 const formElement = document.querySelector('.popup__form');
 const nameInput = formElement.querySelector('.popup__input_type_name');
@@ -17,16 +16,14 @@ const profileInfoName = profileInfo.querySelector('.profile__info-name');
 const profileInfoProfession = profileInfo.querySelector('.profile__info-profession');
 //Переменные для попапа добавления карточки
 const popupAdd = document.querySelector('#popupAdd');
-const popupAddClose = popupAdd.querySelector('.popup__close');
 const popupAddOpen = document.querySelector('.profile__info-addbutton');
 const secondFormElement = document.querySelector('#popupAdds');
 const placeInput = secondFormElement.querySelector('.popup__input_type_place');
 const linkInput = secondFormElement.querySelector('.popup__input_type_link');
 //Переменные для попапа с картинками 
-const popupImage = document.querySelector('#popupImage');//Попап на картинку
-const popupImageClose = popupImage.querySelector('.popup__close');
-const popupImageView = popupImage.querySelector('.popup__image');
-const popupName = popupImage.querySelector('.popup__name');
+export const popupImage = document.querySelector('#popupImage');//Попап на картинку
+export const popupImageView = popupImage.querySelector('.popup__image');
+export const popupName = popupImage.querySelector('.popup__name');
 //Массив с карточками
 const initialCards = [
     {
@@ -54,45 +51,16 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ]; 
-//Функция создания карт
-const createCard = (place, link) => {
-    const cardElement = template.querySelector('.cards__card').cloneNode(true);
-    const cardText = cardElement.querySelector('.cards__text');
-    const cardImage = cardElement.querySelector('.cards__image');
 
-    cardText.textContent = place;
-    cardImage.src = link;
-    cardImage.alt = place;
+import { Card } from './Card.js';
 
-    const deleteButton = cardElement.querySelector('.cards__delete');//Удаление карточек
-    deleteButton.addEventListener('click', () => {
-        cardElement.remove();
-    });
-    
-    const likeButton = cardElement.querySelector('.cards__like');//Лайк карточек
-    likeButton.addEventListener('click', () => {
-        likeButton.classList.toggle('cards__like');
-        likeButton.classList.toggle('cards__like_active');
-    });
-
-    cardImage.addEventListener('click', () => {
-        openPopup(popupImage);
-        popupImageView.src = cardImage.src;
-        popupImageView.alt = cardText.textContent;
-        popupName.textContent = cardText.textContent;
-    });
-
-    return cardElement;
-};
-
-const renderCard = (place, link) => {
-    cards.prepend(createCard(place, link));
-};
 //Добавляем все карточки из массива
 initialCards.forEach((element) => {
     const place = element.name;
     const link = element.link;
-    cards.append(createCard(place, link));
+    const card = new Card(place, link, '.cards__template');
+    const cardElement = card.generateCard();
+    cards.append(cardElement);
 });
 //Общее закрытие и открытие попапа
 //Хороший пример для чего нужно удалять обработчик D:
@@ -103,7 +71,7 @@ function closeByEscape(evt) {
     }
 }
 //Открыли попап + обработчик Escape
-function openPopup(popup) {
+export function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
 };
@@ -165,6 +133,12 @@ function openPopupAdd () {
 };
 //Навесили обработчик
 popupAddOpen.addEventListener('click', openPopupAdd);
+//Функция рендера карточки
+function renderCard(place, link) {
+    const card = new Card(place, link, '.cards__template');
+    const cardElement = card.generateCard();
+    cards.prepend(cardElement);
+}
 //Функция для добавления карточки
 function handleAddFormSubmit (evt) {
     evt.preventDefault();
