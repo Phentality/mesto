@@ -1,5 +1,5 @@
 //Импортируем функцию и переменные нужны для открытия попапа картинки
-import { openPopup, popupImage, popupImageView, popupName } from './script.js';
+import { openPopup, popupImage, popupImageView, popupName } from './index.js';
 
 export class Card {
     constructor(name, link, templateSelector) {

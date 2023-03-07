@@ -1,3 +1,9 @@
+//Импортируем классы
+import { FormValidator } from './FormValidator.js';
+import { Card } from './Card.js';
+//Переменные для форм
+const addFormElement = document.querySelector('#popupAdds');
+const editFormElement = document.querySelector('#popupEdit');
 //Переменные темплейта
 const template = document.querySelector('#card').content;
 //Переменные для вставки карточек
@@ -51,8 +57,6 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ]; 
-
-import { Card } from './Card.js';
 
 //Добавляем все карточки из массива
 initialCards.forEach((element) => {
@@ -151,6 +155,15 @@ function handleAddFormSubmit (evt) {
 };
 //Навесили обработчик
 secondFormElement.addEventListener('submit', handleAddFormSubmit);
-
+//Config для валидации форм
+const formValidationConfig = {
+    inputSelector: '.popup__input',
+    inputErrorClass: "popup__input_type_error",
+    buttonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled'
+  }
+//Для каждой формы свой экземпляр класса
+new FormValidator(formValidationConfig, addFormElement).enableValidation();
+new FormValidator(formValidationConfig, editFormElement).enableValidation();
 
 
