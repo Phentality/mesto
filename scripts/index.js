@@ -1,11 +1,19 @@
 //Импортируем классы
 import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
+//Config для валидации форм
+const formValidationConfig = {
+    inputSelector: '.popup__input',
+    inputErrorClass: "popup__input_type_error",
+    buttonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled'
+  }
 //Переменные для форм
-const addFormElement = document.querySelector('#popupAdds');
-const editFormElement = document.querySelector('#popupEdit');
-//Переменные темплейта
-const template = document.querySelector('#card').content;
+const addFormElement = document.forms["card-form"];
+const editFormElement = document.forms["profile-form"];
+//Переменные валидации
+const addValidator = new FormValidator(formValidationConfig, addFormElement);
+const editValidator = new FormValidator(formValidationConfig, editFormElement);
 //Переменные для вставки карточек
 const cards = document.querySelector('.cards');
 //Переменные общие для попапов
@@ -14,22 +22,20 @@ const popups = document.querySelectorAll('.popup')
 //Переменные для попапа профиля
 const popupProfile = document.querySelector('#popupProfile');
 const popupProfileOpen = document.querySelector('.profile__info-button');
-const formElement = document.querySelector('.popup__form');
-const nameInput = formElement.querySelector('.popup__input_type_name');
-const jobInput = formElement.querySelector('.popup__input_type_profession');
+const nameInput = editFormElement.querySelector('.popup__input_type_name');
+const jobInput = editFormElement.querySelector('.popup__input_type_profession');
 const profileInfo = document.querySelector('.profile__info');
 const profileInfoName = profileInfo.querySelector('.profile__info-name');
 const profileInfoProfession = profileInfo.querySelector('.profile__info-profession');
 //Переменные для попапа добавления карточки
 const popupAdd = document.querySelector('#popupAdd');
 const popupAddOpen = document.querySelector('.profile__info-addbutton');
-const secondFormElement = document.querySelector('#popupAdds');
-const placeInput = secondFormElement.querySelector('.popup__input_type_place');
-const linkInput = secondFormElement.querySelector('.popup__input_type_link');
+const placeInput = addFormElement.querySelector('.popup__input_type_place');
+const linkInput = addFormElement.querySelector('.popup__input_type_link');
 //Переменные для попапа с картинками 
-export const popupImage = document.querySelector('#popupImage');//Попап на картинку
-export const popupImageView = popupImage.querySelector('.popup__image');
-export const popupName = popupImage.querySelector('.popup__name');
+const popupImage = document.querySelector('#popupImage');//Попап на картинку
+const popupImageView = popupImage.querySelector('.popup__image');
+const popupName = popupImage.querySelector('.popup__name');
 //Массив с карточками
 const initialCards = [
     {
@@ -57,13 +63,24 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ]; 
+//Функция на открытие попапа картинки
+function handleCardClick(name, link) {
+    popupImageView.src = link;
+    popupImageView.alt = name;
+    popupName.textContent = name;
+    openPopup(popupImage);
+}
+//Функция создания карточки
+function createCard(name, link) {
+    const cardElement = new Card(name, link, '.cards__template', handleCardClick).generateCard();
+    return cardElement;
+}
 
 //Добавляем все карточки из массива
 initialCards.forEach((element) => {
-    const place = element.name;
+    const name = element.name;
     const link = element.link;
-    const card = new Card(place, link, '.cards__template');
-    const cardElement = card.generateCard();
+    const cardElement = createCard(name, link);
     cards.append(cardElement);
 });
 //Общее закрытие и открытие попапа
@@ -75,7 +92,7 @@ function closeByEscape(evt) {
     }
 }
 //Открыли попап + обработчик Escape
-export function openPopup(popup) {
+function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEscape);
 };
@@ -119,51 +136,36 @@ function handleProfileFormSubmit (evt) {
     closePopup(popupProfile);
 };
 //Навесили обработчик
-formElement.addEventListener('submit', handleProfileFormSubmit);
+editFormElement.addEventListener('submit', handleProfileFormSubmit);
 
 //Попап для добавления карточки
-//Функция для деактивации кнопки при каждом новом открытии попапа
-function openPopupAddDisabled() {
-    const button = popupAdd.querySelector('.popup__button');
-    button.classList.add('popup__button_disabled');
-    button.disabled = placeInput.value === '' && linkInput.value === '';
-}
 //Функция открытия попапа добавления карточки
 function openPopupAdd () {
     openPopup(popupAdd);
     if (placeInput.value === '' && linkInput.value === '') {
-        openPopupAddDisabled();
+        addValidator.toggleButton();
     };
 };
 //Навесили обработчик
 popupAddOpen.addEventListener('click', openPopupAdd);
 //Функция рендера карточки
-function renderCard(place, link) {
-    const card = new Card(place, link, '.cards__template');
-    const cardElement = card.generateCard();
+function renderCard(name, link) {
+    const cardElement = createCard(name, link);
     cards.prepend(cardElement);
 }
 //Функция для добавления карточки
 function handleAddFormSubmit (evt) {
     evt.preventDefault();
-    const place = placeInput.value;
+    const name = placeInput.value;
     const link = linkInput.value;
-    renderCard(place, link);
-    placeInput.value = '';
-    linkInput.value = '';
+    renderCard(name, link);
+    evt.target.reset();
     closePopup(popupAdd);
 };
 //Навесили обработчик
-secondFormElement.addEventListener('submit', handleAddFormSubmit);
-//Config для валидации форм
-const formValidationConfig = {
-    inputSelector: '.popup__input',
-    inputErrorClass: "popup__input_type_error",
-    buttonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled'
-  }
+addFormElement.addEventListener('submit', handleAddFormSubmit);
 //Для каждой формы свой экземпляр класса
-new FormValidator(formValidationConfig, addFormElement).enableValidation();
-new FormValidator(formValidationConfig, editFormElement).enableValidation();
+addValidator.enableValidation();
+editValidator.enableValidation();
 
 

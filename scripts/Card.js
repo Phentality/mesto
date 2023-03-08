@@ -1,11 +1,9 @@
-//Импортируем функцию и переменные нужны для открытия попапа картинки
-import { openPopup, popupImage, popupImageView, popupName } from './index.js';
-
 export class Card {
-    constructor(name, link, templateSelector) {
+    constructor(name, link, templateSelector, handleCardClick) {
         this._name = name;
         this._link = link;
         this._templateSelector = templateSelector;
+        this._handleCardClick = handleCardClick;
     }
 //Берём темплейт(или грубо создаём его)
     _getTemplate() {
@@ -20,41 +18,36 @@ export class Card {
 //Создаём карточку из полученного темплейта
     generateCard() {
         this._element = this._getTemplate();
+        this._cardImage = this._element.querySelector('.cards__image');
+        this._likeButton = this._element.querySelector('.cards__like-btn');
+        this._deleteButton = this._element.querySelector('.cards__delete');
         this._setEventListeners();
         this._element.querySelector('.cards__text').textContent = this._name;
-        this._element.querySelector('.cards__image').src = this._link;
-        this._element.querySelector('.cards__text').alt = this._name;
+        this._cardImage.src = this._link;
+        this._cardImage.alt = this._name;
 
         return this._element;
     }
-//Обработчик открытия попапа
-    _handleOpenPopup() {
-        openPopup(popupImage);
-        popupImageView.src = this._link;
-        popupImageView.alt = this._name;
-        popupName.textContent = this._name;
-      }
 //Обработчик "Лайка"    
     _handleLikeButton() {
-        const likeButton = this._element.querySelector('.cards__like-btn');
-        likeButton.classList.toggle('cards__like');
-        likeButton.classList.toggle('cards__like_active');
+        this._likeButton.classList.toggle('cards__like');
+        this._likeButton.classList.toggle('cards__like_active');
     }
-//Обработчик "Урныф"
+//Обработчик "Урны"
     _handleDeleteButton() {
         this._element.remove();
     }
 //Навесили обработчики
     _setEventListeners() {
-        this._element.querySelector('.cards__image').addEventListener('click', () => {
-          this._handleOpenPopup();
+        this._cardImage.addEventListener('click', () => {
+            this._handleCardClick(this._name, this._link);
         });
 
-        this._element.querySelector('.cards__like').addEventListener('click', () => {
+        this._likeButton.addEventListener('click', () => {
             this._handleLikeButton();
         });
 
-        this._element.querySelector('.cards__delete').addEventListener('click', () => {
+        this._deleteButton.addEventListener('click', () => {
             this._handleDeleteButton();
         });
       } 

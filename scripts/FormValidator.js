@@ -5,16 +5,17 @@ export class FormValidator {
         this._error = config.inputErrorClass;
         this._btn = config.buttonSelector;
         this._ibtn = config.inactiveButtonClass;
+        this._submitButton = this._form.querySelector(this._btn);
     }
-
+//Метод активации валидации
     enableValidation() {
         this._form.addEventListener ('input', () => {
-            this._toggleButton();
+            this.toggleButton();
         })
         this._addInputListeners();
-        this._toggleButton();
+        this.toggleButton();
     }
-
+//Метод добавления ошибки инпута
     _handleFormInput(evt) {
         const input = evt.target;
         const inputId = input.id;
@@ -28,15 +29,14 @@ export class FormValidator {
             error.textContent = input.validationMessage;
         }
     }
-
-    _toggleButton() {
-        const button = this._form.querySelector(this._btn);
+//Метод переключения кнопки
+    toggleButton() {
         const isFormValid = this._form.checkValidity();
 
-        button.disabled = !isFormValid;
-        button.classList.toggle(this._ibtn, !isFormValid);
+        this._submitButton.disabled = !isFormValid;
+        this._submitButton.classList.toggle(this._ibtn, !isFormValid);
     }
-
+//Навешиваем обработчики
     _addInputListeners() {
         this._form.addEventListener('input', (evt) => {
             this._handleFormInput(evt);
